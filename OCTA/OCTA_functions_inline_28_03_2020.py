@@ -1229,6 +1229,13 @@ def create_pattern_fromtxt_inline(data, viewbox = True,
                               size = (str(xyratioshape[i]*size[i]), str(size[i])),
                               transform = mirrortype + "rotate(" + str(shapeorientation[i]) + ", " + str(x[i]) + " " + str(y[i]) + ")")
             )
+            
+        elif elementshape[i].endswith(".jpg"):
+            dwg.add(dwg.image(href = elementshape[i], insert = (str(x[i]-(xyratioshape[i]*size[i])/2),
+                                                      str(y[i]- size[i]/2)),
+                              size = (str(xyratioshape[i]*size[i]), str(size[i])),
+                              transform = mirrortype + "rotate(" + str(shapeorientation[i]) + ", " + str(x[i]) + " " + str(y[i]) + ")")
+            )
         
         else:
             dwg.add(dwg.text(text = elementshape[i], insert = (str(x[i]-(xyratioshape[i]*size[i])/2),

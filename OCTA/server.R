@@ -1,14 +1,14 @@
 server = function(input, output, session) {
   
-  if (!Sys.info()[['sysname']] == 'Darwin'){
-    # When running on shinyapps.io, create a virtualenv
-    reticulate::virtualenv_create(envname = 'python35_env',
-                                  python = '/usr/bin/python3')
-    reticulate::virtualenv_install('python35_env',
-                                   packages = c("pip==20.0.2", "svgwrite", "numpy", "colour", "pandas"), ignore_installed = T)  # <- Add other packages here, if needed
-  }
-  reticulate::use_virtualenv('python35_env', required = T)
-  reticulate::source_python('OCTA_functions_inline_28_03_2020.py')
+  # if (!Sys.info()[['sysname']] == 'Darwin'){
+  #   # When running on shinyapps.io, create a virtualenv
+  #   reticulate::virtualenv_create(envname = 'python35_env',
+  #                                 python = '/usr/bin/python3')
+  #   reticulate::virtualenv_install('python35_env',
+  #                                  packages = c("svgwrite", "numpy", "colour", "pandas"))  # <- Add other packages here, if needed
+  # }
+  # reticulate::use_virtualenv('python35_env', required = T)
+  # reticulate::source_python('OCTA_functions_inline_28_03_2020.py')
   
   parameters <- reactiveValues(nrows = NA, ncols = NA,
                                startx = NA, starty = NA, 

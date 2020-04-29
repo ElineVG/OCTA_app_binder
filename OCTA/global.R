@@ -1,4 +1,4 @@
-library(tidyverse)
+#library(tidyverse)
 library(jsonlite)
 library(shiny)
 library(rhandsontable)
@@ -10,40 +10,75 @@ library(shinyjs)
 library(shinyjqui)
 library(shinyWidgets)
 
-#reticulate::source_python('OCTA_functions_inline_28_03_2020.py')
+reticulate::source_python('OCTA_functions_inline_28_03_2020.py')
 
-# allcolors <- c(
-#   "#0000FF" = "blue",
-#   "#FF0000" = "red",
-#   "#00FF00" = "green",
-#   "#FF7000" = "orange",
-#   "#FFFF00" = "yellow",
-#   "#80FF00" = "chartreuse",
-#   "#00FF80" = "springgreen",
-#   "#00FFFF" = "aqua",
-#   "#0080FF" = "dodgerblue",
-#   "#7F00FF" = "indigo",
-#   "#FF00FF" = "magenta",
-#   "#FF007F" = "deeppink"
-# )
+allcolors <- c(
+  "#0000FF" = "blue",
+  "#FF0000" = "red",
+  "#00FF00" = "green",
+  "#FF7000" = "orange",
+  "#FFFF00" = "yellow",
+  "#80FF00" = "chartreuse",
+  "#00FF80" = "springgreen",
+  "#00FFFF" = "aqua",
+  "#0080FF" = "dodgerblue",
+  "#7F00FF" = "indigo",
+  "#FF00FF" = "magenta",
+  "#FF007F" = "deeppink"
+)
 
 NROW <- sample(c(4:8), size = 1)
 NDIST <- sample(c(30:40), size = 1)
 
-allcolors <- c(
-  "blue",
-  "red",
-  "green",
-  "orange",
-  "yellow",
-  "chartreuse",
-  "springgreen",
-  "aqua",
-  "dodgerblue",
-  "indigo",
-  "magenta",
-  "deeppink"
-)
+# allcolors <- c(
+#   "blue",
+#   "red",
+#   "green",
+#   "orange",
+#   "yellow",
+#   "chartreuse",
+#   "springgreen",
+#   "aqua",
+#   "dodgerblue",
+#   "indigo",
+#   "magenta",
+#   "deeppink"
+# )
+
+# allcolors <- c(
+#   "#9C4B9C" = "purple",
+#   "#5EA1D8" = "blue",
+#   "#54C4D0" = "cyan",
+#   "#62BD80" = "green",
+#   "#B2D135" = "chartreuse",
+#   "#FCE533" = "yellow",
+#   "#F39130" = "orange",
+#   "#ED4959" = "red"
+# )
+
+# #own approximation Palmer & Schloss
+# allcolors <- c(
+#   "#9472DE",
+#   "#00B2F8",
+#   "#3ED1DA",
+#   "#47C294",
+#   "#CBE46D",
+#   "#FFF870",
+#   "#FFAE57",
+#   "#E1685D"
+# )
+
+# #colors Astrid
+# allcolors <- c(
+#   "#9C4B9C",
+#   "#5EA1D8",
+#   "#54C4D0",
+#   "#62BD80",
+#   "#B2D135",
+#   "#FCE533",
+#   "#F39130",
+#   "#ED4959"
+# )
 
 allshapes <- c(
   "none",
