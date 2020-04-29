@@ -6,12 +6,12 @@ OCTA: Order & Complexity Toolbox for Aesthetics
 """
 
 # Import necessary libraries 
-import os
+#import os
 import svgwrite
 import numpy as np
 import colour
 import pandas as pd
-import json
+#import json
    
 ### CREATE JSON FILE
 def create_pattern_json(template = "grid",
@@ -37,20 +37,20 @@ def create_pattern_json(template = "grid",
                    shapexyratio = [1],
                    jitterscale = [0],
                    writedir = "OCTA_stimuli", 
-                   output = ['json', 'txtinline']): # 'json', 'jsoninline', 'txt' and 'txtinline' possible
+                   output = ['txtinline']): # 'json', 'jsoninline', 'txt' and 'txtinline' possible
      
-    if "json" in output:      
-        # If folder for .json-files does not exist yet, create folder
-        if not os.path.exists(writedir + '/json/'):
-            os.makedirs(writedir + '/json/')
-                
-        imgsjson = os.listdir('OCTA_stimuli/json/')
-    
-    if 'txt' in output:       
-        if not os.path.exists(writedir + '/txt/'):
-            os.makedirs(writedir + '/txt/')
-                
-        imgstxt = os.listdir('OCTA_stimuli/txt/')
+    # if "json" in output:      
+    #     # If folder for .json-files does not exist yet, create folder
+    #     if not os.path.exists(writedir + '/json/'):
+    #         os.makedirs(writedir + '/json/')
+    #             
+    #     imgsjson = os.listdir('OCTA_stimuli/json/')
+    # 
+    # if 'txt' in output:       
+    #     if not os.path.exists(writedir + '/txt/'):
+    #         os.makedirs(writedir + '/txt/')
+    #             
+    #     imgstxt = os.listdir('OCTA_stimuli/txt/')
     
     # LOCATIONS
     
@@ -75,10 +75,10 @@ def create_pattern_json(template = "grid",
     max_y = float(max(y) + ydist)
     
     # Naming of output image 
-    if "json" in output: 
-        jsonfilename = (writedir + '/json/' + str(len(imgsjson)+1).zfill(8) + '.json')
-    if "txt" in output:
-        txtfilename = (writedir + '/txt/' + str(len(imgstxt)+1).zfill(8) + '.txt')  
+    # if "json" in output: 
+    #     jsonfilename = (writedir + '/json/' + str(len(imgsjson)+1).zfill(8) + '.json')
+    # if "txt" in output:
+    #     txtfilename = (writedir + '/txt/' + str(len(imgstxt)+1).zfill(8) + '.txt')  
     # BACKGROUND COLOR 
 #    dwg.add(dwg.rect(insert=(0, 0), size=('1530', '530'), rx=None, ry=None, fill='lightgrey'))
     
@@ -643,67 +643,67 @@ def create_pattern_json(template = "grid",
                    'mirror': mirror
                    })
     
-    if 'txt' in output:
-        
-        df.to_csv(txtfilename, index = False, header = True, sep = "|")
+    # if 'txt' in output:
+    #     
+    #     df.to_csv(txtfilename, index = False, header = True, sep = "|")
         
     if "txtinline" in output:
         # return dataframe      
         return df
         
-    if 'json' in output:    
-        data = {}
-        data['display'] = []
-        data['display'].append({
-                           'template': template, 
-                           'max_x': max_x,
-                           'max_y': max_y,
-                           'xdist': xdist,
-                           'ydist': ydist,
-                           'xjitter': list(set(xjitter)),
-                           'yjitter': list(set(yjitter)),
-                           'shaperepeat': repeateachshape,
-                           'colourpattern': colourpattern,
-                           'colourdim': colourdim,
-                           'colourrepeat': repeateachcolor})
+    # if 'json' in output:    
+    #     data = {}
+    #     data['display'] = []
+    #     data['display'].append({
+    #                        'template': template, 
+    #                        'max_x': max_x,
+    #                        'max_y': max_y,
+    #                        'xdist': xdist,
+    #                        'ydist': ydist,
+    #                        'xjitter': list(set(xjitter)),
+    #                        'yjitter': list(set(yjitter)),
+    #                        'shaperepeat': repeateachshape,
+    #                        'colourpattern': colourpattern,
+    #                        'colourdim': colourdim,
+    #                        'colourrepeat': repeateachcolor})
+    #     
+    #     data['elements'] = []
+    #     data['elements'].append({
+    #                        'number': list(range(1,nrows*ncols+1)), 
+    #                        'column': list(map(int, np.array(list(np.arange(1, ncols+1, 1)) * nrows))),
+    #                        'row': list(map( int, np.repeat(np.arange(1, nrows+1, 1), repeats = ncols))),
+    #                        'max_x': list(map(float, np.repeat(max_x, nrows*ncols))),
+    #                        'max_y': list(map(float, np.repeat(max_y, nrows*ncols))),
+    #                        'x': list(map(float, x)),
+    #                        'y': list(map(float, y)),
+    #                        'shape': list(elementshape),
+    #                        'xyratio': list(map(float, xyratioshape)),
+    #                        'colour': list(col),
+    #                        'size': list(map(int, size)),
+    #                        'shapeorientation': list(map(int,shapeorientation)),
+    #                        'mirror': list(mirror)})  
+    # 
+    #     # write JSON file
+    #     with open(jsonfilename, 'w') as outfile:
+    #         json.dump(data, outfile, indent = 4)
         
-        data['elements'] = []
-        data['elements'].append({
-                           'number': list(range(1,nrows*ncols+1)), 
-                           'column': list(map(int, np.array(list(np.arange(1, ncols+1, 1)) * nrows))),
-                           'row': list(map( int, np.repeat(np.arange(1, nrows+1, 1), repeats = ncols))),
-                           'max_x': list(map(float, np.repeat(max_x, nrows*ncols))),
-                           'max_y': list(map(float, np.repeat(max_y, nrows*ncols))),
-                           'x': list(map(float, x)),
-                           'y': list(map(float, y)),
-                           'shape': list(elementshape),
-                           'xyratio': list(map(float, xyratioshape)),
-                           'colour': list(col),
-                           'size': list(map(int, size)),
-                           'shapeorientation': list(map(int,shapeorientation)),
-                           'mirror': list(mirror)})  
-    
-        # write JSON file
-        with open(jsonfilename, 'w') as outfile:
-            json.dump(data, outfile, indent = 4)
-        
-    if "jsoninline" in output:
-        # return JSON      
-        return data
+    # if "jsoninline" in output:
+    #     # return JSON      
+    #     return data
 
 
 ### CREATE SVG FROM JSON
 def create_pattern_fromjson_inline(data, viewbox = True, 
                                    writedir = "OCTA_stimuli",
-                                   output = ['svg', 'svginline']): # choose SVG OR SVGINLINE!!!
+                                   output = ['svginline']): # choose SVG OR SVGINLINE!!!
     
-    if 'svg' in output: 
-        # If folder for .svg-files does not exist yet, create folder
-        if not os.path.exists(writedir + '/svg/'):
-            os.makedirs(writedir + '/svg/')
-            
-        # Get .svg img directory
-        imgs = os.listdir(writedir + '/svg/') 
+    # if 'svg' in output: 
+    #     # If folder for .svg-files does not exist yet, create folder
+    #     if not os.path.exists(writedir + '/svg/'):
+    #         os.makedirs(writedir + '/svg/')
+    #         
+    #     # Get .svg img directory
+    #     imgs = os.listdir(writedir + '/svg/') 
     
     data = pd.DataFrame(data)
     # Read parameter info from .txt file
@@ -720,15 +720,15 @@ def create_pattern_fromjson_inline(data, viewbox = True,
     shapeorientation = data['shapeorientation'][0]
     mirror = data['mirror'][0]
     
-    if "svg" in output:
-        # Naming of output image
-        if viewbox == True:
-            dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
-                               '.svg', size = (max_x, max_y), viewBox = ('0 0 {} {}'.format(max_x, max_y)))
-        
-        else: 
-            dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
-                               '.svg')
+    # if "svg" in output:
+    #     # Naming of output image
+    #     if viewbox == True:
+    #         dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
+    #                            '.svg', size = (max_x, max_y), viewBox = ('0 0 {} {}'.format(max_x, max_y)))
+    #     
+    #     else: 
+    #         dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
+    #                            '.svg')
         
     if "svginline" in output:  
         # Naming of output image
@@ -957,10 +957,10 @@ def create_pattern_fromjson_inline(data, viewbox = True,
                              font_size = str(size[i]/4), font_weight = str(700), font_family = 'Trebuchet MS',
                              transform = mirrortype + "rotate(" + str(shapeorientation[i]) + ", " + str(x[i]) + " " + str(y[i]) + ")")
             )
-    
-    if "svg" in output:
-        # write svg file to disk
-        dwg.save()
+    # 
+    # if "svg" in output:
+    #     # write svg file to disk
+    #     dwg.save()
     
     if "svginline" in output:
         # return svg
@@ -971,13 +971,13 @@ def create_pattern_fromtxt_inline(data, viewbox = True,
                                    writedir = "OCTA_stimuli",
                                    output = ['svg', 'svgimage']): # choose 'svg', 'svgimage', 'svginline'
     
-    if 'svg' in output: 
-        # If folder for .svg-files does not exist yet, create folder
-        if not os.path.exists(writedir + '/svg/'):
-            os.makedirs(writedir + '/svg/')
-            
-        # Get .svg img directory
-        imgs = os.listdir(writedir + '/svg/') 
+    # if 'svg' in output: 
+    #     # If folder for .svg-files does not exist yet, create folder
+    #     if not os.path.exists(writedir + '/svg/'):
+    #         os.makedirs(writedir + '/svg/')
+    #         
+    #     # Get .svg img directory
+    #     imgs = os.listdir(writedir + '/svg/') 
     
     data = pd.DataFrame(data)
     # Read parameter info from .txt file
@@ -994,15 +994,15 @@ def create_pattern_fromtxt_inline(data, viewbox = True,
     shapeorientation = data['shapeorientation']
     mirror = data['mirror']
     
-    if "svg" in output:
-        # Naming of output image
-        if viewbox == True:
-            dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
-                               '.svg', size = (max_x, max_y), viewBox = ('0 0 {} {}'.format(max_x, max_y)))
-        
-        else: 
-            dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
-                               '.svg')
+    # if "svg" in output:
+    #     # Naming of output image
+    #     if viewbox == True:
+    #         dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
+    #                            '.svg', size = (max_x, max_y), viewBox = ('0 0 {} {}'.format(max_x, max_y)))
+    #     
+    #     else: 
+    #         dwg = svgwrite.Drawing(writedir + '/svg/' + str(len(imgs)+1).zfill(8) + 
+    #                            '.svg')
         
     if "svginline" in output:  
         # Naming of output image
@@ -1247,9 +1247,9 @@ def create_pattern_fromtxt_inline(data, viewbox = True,
                              transform = mirrortype + "rotate(" + str(shapeorientation[i]) + ", " + str(x[i]) + " " + str(y[i]) + ")")
             )
     
-    if "svg" in output:
-        # write svg file to disk
-        dwg.save()
+    # if "svg" in output:
+    #     # write svg file to disk
+    #     dwg.save()
     
     if "svginline" in output:
         # return svg

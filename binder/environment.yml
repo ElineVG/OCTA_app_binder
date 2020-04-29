@@ -1,7 +1,5 @@
 dependencies:
-    - os
     - svgwrite
     - numpy
     - colour
     - pandas
-    - json
